@@ -19,7 +19,7 @@ cat > /mnt/etc/nixos/kiosk-config.nix << EOF
 { ... }: {
   imports = [
     ./hardware-configuration.nix
-    ./kiosk-base.nix
+    ./modules/kiosk-base.nix
   ];
 
   networking.hostName = "$HOSTNAME";
