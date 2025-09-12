@@ -66,12 +66,6 @@ in {
     # Console autologin
     services.getty.autologinUser = mkIf cfg.autologin cfg.user;
 
-    # X11 kiosk session
-    services.xserver.enable = true;
-    services.xserver.displayManager.lightdm.enable = true;
-    services.xserver.displayManager.autoLogin.enable = mkIf cfg.autologin true;
-    services.xserver.displayManager.autoLogin.user = mkIf cfg.autologin cfg.user;
-
     # Window manager and kiosk app
     services.xserver.desktopManager.xterm.enable = false;
     services.xserver.windowManager.openbox.enable = true;
