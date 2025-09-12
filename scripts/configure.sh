@@ -35,8 +35,8 @@ cat > /mnt/etc/nixos/kiosk-config.nix << EOF
 }
 EOF
 
-# Copy the kiosk-base module
-cp modules/kiosk-base.nix /mnt/etc/nixos/
+# Copy the entire modules directory (needed for modular kiosk configuration)
+cp -r modules /mnt/etc/nixos/
 
 # Modify the generated configuration.nix to use our custom config
 sed -i 's|./hardware-configuration.nix|./kiosk-config.nix|' /mnt/etc/nixos/configuration.nix
