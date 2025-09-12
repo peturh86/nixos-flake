@@ -48,6 +48,8 @@ mkfs.fat -F 32 -n boot "${DISK}1"
 mkfs.ext4 -L nixos "${DISK}2"
 mkswap -L swap "${DISK}3"
 
+sleep 1
+
 echo "[*] Mounting partitions..."
 mount /dev/disk/by-label/nixos /mnt
 mkdir -p /mnt/boot
@@ -79,7 +81,7 @@ cat > /mnt/etc/nixos/kiosk-config.nix << EOF
 EOF
 
 # Copy the kiosk-base module
-cp /root/nixos-flake/modules/kiosk-base.nix /mnt/etc/nixos/
+cp modules/kiosk-base.nix /mnt/etc/nixos/
 
 # Modify the generated configuration.nix to use our custom config
 sed -i 's|./hardware-configuration.nix|./kiosk-config.nix|' /mnt/etc/nixos/configuration.nix
