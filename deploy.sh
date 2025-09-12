@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# === Config ===
 MNT="/mnt"
-HOSTS_DIR="$(dirname "$0")/hosts"
+REPO="/root/nixos-config"
+HOSTS_DIR="$REPO/hosts"
 
-# === Get hostname argument ===
+# === Args ===
 HOSTNAME="${1:-}"
 if [ -z "$HOSTNAME" ]; then
   echo "Usage: $0 <hostname>"
@@ -13,7 +15,7 @@ fi
 
 HOST_DIR="$HOSTS_DIR/$HOSTNAME"
 if [ ! -d "$HOST_DIR" ]; then
-  echo "Error: host folder $HOST_DIR does not exist."
+  echo "Error: host folder $HOST_DIR does not exist in the repo."
   exit 1
 fi
 
@@ -28,9 +30,9 @@ DISK="/dev/$DISK"
 if [ ! -b "$DISK" ]; then
   echo "Error: $DISK is not a valid block device."
   exit 1
-fi  
+fi
 
-# === Step 2: Partition disk (UEFI) ===
+# === Step 2: Partition disk (UEFI only) ===
 echo "[*] Partitioning $DISK..."
 parted "$DISK" -- mklabel gpt
 parted "$DISK" -- mkpart ESP fat32 1MiB 513MiB
@@ -39,7 +41,7 @@ parted "$DISK" -- mkpart primary ext4 513MiB 100%
 
 EFI_PART="${DISK}p1"
 ROOT_PART="${DISK}p2"
-# For non-nvme disks (sda), partitions are sda1, sda2 (no 'p')
+# For SATA disks like /dev/sda, partitions are sda1/sda2 (no 'p')
 if [[ "$DISK" =~ /dev/sd. ]]; then
   EFI_PART="${DISK}1"
   ROOT_PART="${DISK}2"
@@ -60,9 +62,11 @@ mount "$EFI_PART" "$MNT/boot"
 echo "[*] Generating hardware-configuration.nix..."
 nixos-generate-config --root "$MNT"
 
-echo "[*] Copying hardware-configuration.nix into $HOST_DIR..."
+echo "[*] Copying hardware-configuration.nix into repo..."
 cp "$MNT/etc/nixos/hardware-configuration.nix" "$HOST_DIR/"
 
-# === Step 6: Install NixOS ===
+# === Step 6: Install system ===
 echo "[*] Installing NixOS for $HOSTNAME..."
-nixos-install --flake "$PWD#$HOSTNAME" --root "$MNT"
+nixos-install --flake "$REPO#$HOSTNAME" --root "$MNT"
+
+echo "[*] Done! You can now reboot into kiosk: $HOSTNAME"
