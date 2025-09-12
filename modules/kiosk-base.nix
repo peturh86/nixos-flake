@@ -1,34 +1,99 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-{
-  # One dedicated user
-  users.users.kiosk = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-    password = ""; # passwordless
+with lib;
+
+let
+  cfg = config.services.kiosk;
+in {
+  options.services.kiosk = {
+    user = mkOption {
+      type = types.str;
+      default = "kiosk";
+      description = "Username for the kiosk user";
+    };
+
+    password = mkOption {
+      type = types.str;
+      default = "";
+      description = "Password for the kiosk user (empty for passwordless)";
+    };
+
+    extraGroups = mkOption {
+      type = types.listOf types.str;
+      default = [ "wheel" "networkmanager" ];
+      description = "Extra groups for the kiosk user";
+    };
+
+    autologin = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable autologin for the kiosk user";
+    };
+
+    kioskUrl = mkOption {
+      type = types.str;
+      default = "https://factory-app.local";
+      description = "URL to open in kiosk mode";
+    };
+
+    timeZone = mkOption {
+      type = types.str;
+      default = "UTC";
+      description = "System time zone";
+    };
+
+    locale = mkOption {
+      type = types.str;
+      default = "en_US.UTF-8";
+      description = "System locale";
+    };
+
+    keyMap = mkOption {
+      type = types.str;
+      default = "us";
+      description = "Console keymap";
+    };
   };
 
-  # Console autologin
-  services.getty.autologinUser = "kiosk";
+  config = {
+    # Kiosk user
+    users.users.${cfg.user} = {
+      isNormalUser = true;
+      extraGroups = cfg.extraGroups;
+      password = cfg.password;
+    };
 
-  # X11 kiosk session
-  services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "kiosk";
+    # Console autologin
+    services.getty.autologinUser = mkIf cfg.autologin cfg.user;
 
-  # Replace with your real kiosk app:
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.windowManager.openbox.enable = true;
-  environment.sessionVariables = {
-    DEFAULT_SESSION = "${pkgs.firefox}/bin/firefox --kiosk https://factory-app.local";
+    # X11 kiosk session
+    services.xserver.enable = true;
+    services.xserver.displayManager.lightdm.enable = true;
+    services.xserver.displayManager.autoLogin.enable = mkIf cfg.autologin true;
+    services.xserver.displayManager.autoLogin.user = mkIf cfg.autologin cfg.user;
+
+    # Window manager and kiosk app
+    services.xserver.desktopManager.xterm.enable = false;
+    services.xserver.windowManager.openbox.enable = true;
+    environment.sessionVariables = {
+      DEFAULT_SESSION = "${pkgs.firefox}/bin/firefox --kiosk ${cfg.kioskUrl}";
+    };
+
+    # Remote management
+    services.openssh.enable = true;
+
+    # Boot loader
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+
+    # System settings
+    time.timeZone = cfg.timeZone;
+    i18n.defaultLocale = cfg.locale;
+    console.keyMap = cfg.keyMap;
+
+    # Networking
+    networking.networkmanager.enable = true;
+
+    system.stateVersion = "25.05";
   };
-
-  # Remote management
-  services.openssh.enable = true;
-
-  system.stateVersion = "25.05";
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 }
