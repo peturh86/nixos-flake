@@ -28,15 +28,7 @@ DISK="/dev/$DISK"
 if [ ! -b "$DISK" ]; then
   echo "Error: $DISK is not a valid block device."
   exit 1
-fi
-
-echo
-echo "WARNING: This will ERASE all data on $DISK!"
-read -rp "Type 'YES' to continue: " CONFIRM
-if [ "$CONFIRM" != "YES" ]; then
-  echo "Aborting."
-  exit 1
-fi
+fi  
 
 # === Step 2: Partition disk (UEFI) ===
 echo "[*] Partitioning $DISK..."
@@ -69,7 +61,7 @@ echo "[*] Generating hardware-configuration.nix..."
 nixos-generate-config --root "$MNT"
 
 echo "[*] Copying hardware-configuration.nix into $HOST_DIR..."
-mv "$MNT/etc/nixos/hardware-configuration.nix" "$HOST_DIR/"
+cp "$MNT/etc/nixos/hardware-configuration.nix" "$HOST_DIR/"
 
 # === Step 6: Install NixOS ===
 echo "[*] Installing NixOS for $HOSTNAME..."
