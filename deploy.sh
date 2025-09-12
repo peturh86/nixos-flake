@@ -65,6 +65,4 @@ cp "$MNT/etc/nixos/hardware-configuration.nix" "$HOST_DIR/"
 
 # === Step 6: Install NixOS ===
 echo "[*] Installing NixOS for $HOSTNAME..."
-nixos-install --flake "$PWD#$HOSTNAME"
-
-echo "[*] Done! Reboot into kiosk."
+nixos-install --flake "$PWD#$HOSTNAME" --root "$MNT"
