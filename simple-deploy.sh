@@ -4,6 +4,8 @@ set -euo pipefail
 # === NixOS Kiosk Deployment Script ===
 # Interactive disk selection with no hardcoded defaults
 
+chmod +x ./scripts/*.sh
+
 # === Configuration Variables ===
 DISK="${DISK:-}"
 HOSTNAME="${HOSTNAME:-kiosk-001}"
