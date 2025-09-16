@@ -74,10 +74,18 @@ No hardcoded disk references - works with any valid block device!
 
 The kiosk system includes:
 - **LightDM** display manager (optional)
-- **Openbox** window manager
+- **Openbox** window manager with custom configuration
 - **Tint2** panel with taskbar, system tray, and clock
 - **Firefox** in kiosk mode
+- **Konsole** terminal emulator (KDE)
+- **Git** version control system
 - **Comprehensive logging** for debugging
+
+### Right-Click Menu Options
+- Firefox Kiosk - Launch the kiosk application
+- Konsole Terminal - KDE terminal emulator
+- XTerm Terminal - Fallback terminal
+- Reboot - System restart
 
 ## ⚠️ Important Notes
 

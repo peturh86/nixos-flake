@@ -14,6 +14,9 @@ in {
       xorg.xprop
       wmctrl
       xdotool
+      xterm  # Terminal for Openbox menu
+      git    # Version control system
+      kdePackages.konsole  # KDE terminal emulator
     ];
   };
 }

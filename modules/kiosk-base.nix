@@ -10,6 +10,7 @@ in {
     ./kiosk/desktop/default.nix
     ./kiosk/desktop/packages.nix
     ./kiosk/desktop/tint2.nix
+    ./kiosk/desktop/tint2-autostart.nix
     ./kiosk/autostart/default.nix
     ./kiosk/system/default.nix
   ];
