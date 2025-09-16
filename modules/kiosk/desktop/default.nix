@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with types;
@@ -40,7 +40,7 @@ in {
     services.xserver.windowManager.openbox.enable = mkDefault true;
 
   # Openbox menu configuration (copied from complete-config)
-  environment.systemPackages = with pkgs; [ kdePackages.konsole xterm ];
+  environment.systemPackages = with pkgs; [ kdeApplications.konsole xterm ];
 
   environment.etc."xdg/openbox/menu.xml".text = ''
   <?xml version="1.0" encoding="UTF-8"?>
