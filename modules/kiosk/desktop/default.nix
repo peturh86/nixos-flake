@@ -39,9 +39,6 @@ in {
     services.xserver.desktopManager.xterm.enable = mkDefault false;
     services.xserver.windowManager.openbox.enable = mkDefault true;
 
-  # Openbox menu configuration (copied from complete-config)
-  environment.systemPackages = with pkgs; [ kdePackages.konsole xterm ];
-
   environment.etc."xdg/openbox/menu.xml".text = ''
   <?xml version="1.0" encoding="UTF-8"?>
   <openbox_menu xmlns="http://openbox.org/"
