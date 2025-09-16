@@ -47,6 +47,12 @@ in {
               </action>
           </item>
 
+          <item label="Firefox Window">
+              <action name="Execute">
+                  <command>firefox</command>
+              </action>
+          </item>
+
           <separator />
 
           <!-- Debug Tools -->
@@ -157,7 +163,8 @@ in {
         </desktops>
 
         <applications>
-          <application class="*">
+          <!-- Firefox in kiosk mode should be full-screen -->
+          <application class="firefox" role="browser">
             <decor>no</decor>
             <shade>no</shade>
             <focus>yes</focus>
@@ -168,6 +175,20 @@ in {
             <skip_taskbar>no</skip_taskbar>
             <fullscreen>yes</fullscreen>
             <maximized>true</maximized>
+          </application>
+
+          <!-- Other applications should be windowed for Tint2 access -->
+          <application class="*">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>1</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
           </application>
         </applications>
 

@@ -97,16 +97,15 @@ in {
       clock_uwheel_command =
       clock_dwheel_command =
 
-      # Battery
-      battery_tooltip = 1
-      battery_low_status = 10
-      battery_low_cmd =
-      battery_full_cmd =
-      bat1_font_color = #ffffff 100
-      bat2_font_color = #ffffff 100
-      battery_padding = 1 0
-      battery_background_id = 0
-      battery_hide = 101
+      # Launcher
+      launcher_padding = 8 12 8
+      launcher_background_id = 0
+      launcher_icon_background_id = 0
+      launcher_icon_size = 40
+      launcher_icon_asb = 100 0 0
+      launcher_icon_theme_override = 0
+      startup_notifications = 1
+      launcher_tooltip = 1
 
       # Tooltip
       tooltip_show_timeout = 0.5

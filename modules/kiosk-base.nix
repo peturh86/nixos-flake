@@ -11,6 +11,7 @@ in {
     ./kiosk/desktop/packages.nix
     ./kiosk/desktop/tint2.nix
     ./kiosk/desktop/tint2-autostart.nix
+    ./kiosk/desktop/desktop-entries.nix
     ./kiosk/autostart/default.nix
     ./kiosk/autostart/tint2.nix
     ./kiosk/system/default.nix
