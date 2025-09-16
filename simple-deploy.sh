@@ -61,14 +61,6 @@ else
 fi
 echo
 
-# Confirm before proceeding
-read -rp "⚠️  This will DESTROY all data on $DISK. Continue? (y/N): " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo "❌ Aborted by user."
-    exit 1
-fi
-
 # === Execute Deployment Steps ===
 
 echo "🔧 Step 1: Partitioning and formatting disk..."
