@@ -40,6 +40,7 @@ in {
                     file:///usr/share/openbox/menu.xsd">
 
       <menu id="root-menu" label="Menu">
+          <!-- Kiosk Applications -->
           <item label="Firefox Kiosk">
               <action name="Execute">
                   <command>firefox --kiosk https://factory-app.local</command>
@@ -48,23 +49,47 @@ in {
 
           <separator />
 
-          <item label="Konsole Terminal">
-              <action name="Execute">
-                  <command>konsole</command>
-              </action>
-          </item>
+          <!-- Debug Tools -->
+          <menu id="debug-menu" label="Debug Tools">
+              <item label="Konsole Terminal">
+                  <action name="Execute">
+                      <command>konsole</command>
+                  </action>
+              </item>
 
-          <item label="XTerm Terminal">
-              <action name="Execute">
-                  <command>xterm</command>
-              </action>
-          </item>
+              <item label="XTerm Terminal">
+                  <action name="Execute">
+                      <command>xterm</command>
+                  </action>
+              </item>
+
+              <item label="System Monitor">
+                  <action name="Execute">
+                      <command>xterm -e htop</command>
+                  </action>
+              </item>
+
+              <item label="Network Status">
+                  <action name="Execute">
+                      <command>xterm -e sh -c 'nmcli device status; echo "Press Enter to close..."; read'</command>
+                  </action>
+              </item>
+          </menu>
 
           <separator />
 
-          <item label="Reboot">
+          <!-- System Controls -->
+          <item label="Reboot System">
               <action name="Execute">
                   <command>systemctl reboot</command>
+                  <prompt>yes</prompt>
+              </action>
+          </item>
+
+          <item label="Shutdown System">
+              <action name="Execute">
+                  <command>systemctl poweroff</command>
+                  <prompt>yes</prompt>
               </action>
           </item>
       </menu>
@@ -186,6 +211,13 @@ in {
             </mousebind>
             <mousebind button="A-Right" action="Drag">
               <action name="Resize"/>
+            </mousebind>
+          </context>
+          <context name="Desktop">
+            <mousebind button="Right" action="Press">
+              <action name="ShowMenu">
+                <menu>root-menu</menu>
+              </action>
             </mousebind>
           </context>
         </mouse>

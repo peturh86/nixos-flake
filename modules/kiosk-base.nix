@@ -12,6 +12,7 @@ in {
     ./kiosk/desktop/tint2.nix
     ./kiosk/desktop/tint2-autostart.nix
     ./kiosk/autostart/default.nix
+    ./kiosk/autostart/tint2.nix
     ./kiosk/system/default.nix
   ];
 
