@@ -45,6 +45,11 @@ echo "[*] Step 2: Mounting partitions..."
 echo "[*] Step 3: Configuring NixOS..."
 ./scripts/configure.sh "$HOSTNAME" "$KIOSK_USER" "$KIOSK_PASSWORD" "$TIMEZONE" "$LOCALE" "$KIOSK_URL"
 
+echo "[*] Step 3.5: Copying hardware configuration to repo..."
+# Ensure the host directory exists
+mkdir -p "hosts/$HOSTNAME"
+cp "/mnt/etc/nixos/hardware-configuration.nix" "hosts/$HOSTNAME/"
+
 echo "[*] Step 4: Installing NixOS..."
 ./scripts/install.sh
 
