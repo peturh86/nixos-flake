@@ -21,14 +21,14 @@ in {
 
   config = {
     # X11 and Display Manager
-    services.xserver.enable = true;
-    services.xserver.displayManager.lightdm.enable = cfg.enableLightDM;
-    services.xserver.displayManager.autoLogin.enable = cfg.autologin;
+    services.xserver.enable = mkDefault true;
+    services.xserver.displayManager.lightdm.enable = mkDefault cfg.enableLightDM;
+    services.xserver.displayManager.autoLogin.enable = mkDefault cfg.autologin;
     services.xserver.displayManager.autoLogin.user = mkIf cfg.autologin cfg.user;
-    services.xserver.displayManager.defaultSession = "none+openbox";
+    services.xserver.displayManager.defaultSession = mkDefault "none+openbox";
 
     # Window manager and desktop
-    services.xserver.desktopManager.xterm.enable = false;
-    services.xserver.windowManager.openbox.enable = true;
+    services.xserver.desktopManager.xterm.enable = mkDefault false;
+    services.xserver.windowManager.openbox.enable = mkDefault true;
   };
 }

@@ -27,19 +27,19 @@ in {
 
   config = {
     # Remote management
-    services.openssh.enable = true;
+    services.openssh.enable = mkDefault true;
 
     # Boot loader
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader.systemd-boot.enable = mkDefault true;
+    boot.loader.efi.canTouchEfiVariables = mkDefault true;
 
     # System settings
-    time.timeZone = cfg.timeZone;
-    i18n.defaultLocale = cfg.locale;
-    console.keyMap = cfg.keyMap;
+    time.timeZone = mkDefault cfg.timeZone;
+    i18n.defaultLocale = mkDefault cfg.locale;
+    console.keyMap = mkDefault cfg.keyMap;
 
     # Networking
-    networking.networkmanager.enable = true;
+    networking.networkmanager.enable = mkDefault true;
 
     system.stateVersion = "25.05";
   };
