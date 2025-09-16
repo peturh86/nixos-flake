@@ -15,6 +15,11 @@ in {
     htop
     tmux
 
+    # Browsers and applications
+    firefox
+    chromium
+    wine
+
     # Networking tools
     networkmanager
     wpa_supplicant

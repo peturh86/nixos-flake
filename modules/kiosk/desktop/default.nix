@@ -1,6 +1,7 @@
 { config, lib, ... }:
 
 with lib;
+with types;
 
 let
   cfg = config.services.kiosk;

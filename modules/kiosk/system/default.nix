@@ -1,6 +1,7 @@
 { config, lib, ... }:
 
 with lib;
+with types;
 
 let
   cfg = config.services.kiosk;
@@ -59,6 +60,12 @@ in {
   };
 
   config = {
+    # Enable essential programs
+    programs.firefox.enable = mkDefault true;
+    programs.chromium.enable = mkDefault true;
+    programs.wine.enable = mkDefault true;
+    programs.git.enable = mkDefault true;
+
     # Remote management
     services.openssh.enable = mkDefault true;
 
