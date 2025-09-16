@@ -40,7 +40,7 @@ in {
     services.xserver.windowManager.openbox.enable = mkDefault true;
 
   # Openbox menu configuration (copied from complete-config)
-  environment.systemPackages = with pkgs; [ kdeApplications.konsole xterm ];
+  environment.systemPackages = with pkgs; [ konsole xterm ];
 
   environment.etc."xdg/openbox/menu.xml".text = ''
   <?xml version="1.0" encoding="UTF-8"?>

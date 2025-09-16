@@ -16,7 +16,7 @@ in {
       xdotool
       xterm  # Terminal for Openbox menu
       git    # Version control system
-  kdeApplications.konsole  # KDE terminal emulator
+  konsole  # KDE terminal emulator
       firefox  # Web browser for kiosk mode
       chromium  # Web browser for SAP and other applications
       wine  # For Windows applications like IPS
