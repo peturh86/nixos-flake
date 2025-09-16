@@ -39,76 +39,86 @@ in {
     services.xserver.desktopManager.xterm.enable = mkDefault false;
     services.xserver.windowManager.openbox.enable = mkDefault true;
 
-  # Openbox menu configuration (only when not using the complete-config import)
-  environment.etc."xdg/openbox/menu.xml".text = mkIf (mkNot cfg.useCompleteConfig) ''
-      <?xml version="1.0" encoding="UTF-8"?>
-      <openbox_menu xmlns="http://openbox.org/"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="http://openbox.org/
-                    file:///usr/share/openbox/menu.xsd">
+  # Openbox menu configuration (copied from complete-config)
+  environment.systemPackages = with pkgs; (config.environment.systemPackages or []) ++ [ kdePackages.konsole xterm ];
 
-      <menu id="root-menu" label="Menu">
-          <!-- Kiosk Applications -->
-          <item label="Firefox Kiosk">
-              <action name="Execute">
-                  <command>firefox --kiosk https://factory-app.local</command>
-              </action>
-          </item>
+  environment.etc."xdg/openbox/menu.xml".text = ''
+  <?xml version="1.0" encoding="UTF-8"?>
+  <openbox_menu xmlns="http://openbox.org/"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://openbox.org/
+          file:///usr/share/openbox/menu.xsd">
 
-          <item label="Firefox Window">
-              <action name="Execute">
-                  <command>firefox</command>
-              </action>
-          </item>
+  <menu id="root-menu" label="Menu">
+    <!-- Your 3 kiosk applications -->
+    <item label="Web Browser">
+      <action name="Execute">
+        <command>firefox --new-window https://www.ja.is</command>
+      </action>
+    </item>
+        
+    <item label="IPS">
+      <action name="Execute">
+        <command>ips</command>
+      </action>
+    </item>
+        
+    <item label="SAP">
+      <action name="Execute">
+        <command>chromium --app=https://sapapp-p1.postur.is/sap/bc/gui/sap/its/webgui</command>
+      </action>
+    </item>
+        
+    <separator />
+        
+    <!-- Debug tools -->
+    <menu id="debug-menu" label="Debug Tools">
+      <item label="Terminal">
+        <action name="Execute">
+          <command>konsole</command>
+        </action>
+      </item>
+            
+      <item label="IPS Debug">
+        <action name="Execute">
+          <command>konsole -e sh -c 'ips-debug; echo "Press Enter to close..."; read'</command>
+        </action>
+      </item>
+            
+      <item label="IPS Status">
+        <action name="Execute">
+          <command>konsole -e sh -c 'ips-status; echo "Press Enter to close..."; read'</command>
+        </action>
+      </item>
+            
+      <item label="Wine Config">
+        <action name="Execute">
+          <command>konsole -e sh -c 'export WINEPREFIX=$HOME/.wine-ips; winecfg'</command>
+        </action>
+      </item>
+    </menu>
+        
+    <separator />
+        
+    <!-- System controls -->
+    <item label="Reboot">
+      <action name="Execute">
+        <command>systemctl reboot</command>
+      </action>
+    </item>
+        
+    <!-- Optional: Add shutdown if needed -->
+    <!-- 
+    <item label="Shutdown">
+      <action name="Execute">
+        <command>systemctl poweroff</command>
+      </action>
+    </item>
+    -->
+  </menu>
 
-          <separator />
-
-          <!-- Debug Tools -->
-          <menu id="debug-menu" label="Debug Tools">
-              <item label="Konsole Terminal">
-                  <action name="Execute">
-                      <command>konsole</command>
-                  </action>
-              </item>
-
-              <item label="XTerm Terminal">
-                  <action name="Execute">
-                      <command>xterm</command>
-                  </action>
-              </item>
-
-              <item label="System Monitor">
-                  <action name="Execute">
-                      <command>xterm -e htop</command>
-                  </action>
-              </item>
-
-              <item label="Network Status">
-                  <action name="Execute">
-                      <command>xterm -e sh -c 'nmcli device status; echo "Press Enter to close..."; read'</command>
-                  </action>
-              </item>
-          </menu>
-
-          <separator />
-
-          <!-- System Controls -->
-          <item label="Reboot System">
-              <action name="Execute">
-                  <command>systemctl reboot</command>
-                  <prompt>yes</prompt>
-              </action>
-          </item>
-
-          <item label="Shutdown System">
-              <action name="Execute">
-                  <command>systemctl poweroff</command>
-                  <prompt>yes</prompt>
-              </action>
-          </item>
-      </menu>
-      </openbox_menu>
-    '';
+  </openbox_menu>
+  '';
 
   # Openbox configuration (only when not using the complete-config import)
   environment.etc."xdg/openbox/rc.xml".text = mkIf (mkNot cfg.useCompleteConfig) ''

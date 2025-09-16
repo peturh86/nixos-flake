@@ -1,13 +1,31 @@
-{ config, lib, ... }:
-
-with lib;
-
+{ config, pkgs, ... }:
 let
-  cfg = config.services.kiosk;
+  sap = pkgs.makeDesktopItem {
+    name = "web";
+    desktopName = "Web";
+    exec = "firefox --new-window https://www.ja.is";
+    icon = "firefox";
+    categories = [ "Network" ];
+  };
+
+  ips = pkgs.makeDesktopItem {
+    name = "ips";
+    desktopName = "IPS";
+    exec = "ips";
+    icon = "wine";
+    categories = [ "Utility" ];
+  };
+
+  intranet = pkgs.makeDesktopItem {
+    name = "sap";
+    desktopName = "SAP (Web)";
+    exec = "chromium --app=https://sapapp-p1.postur.is/sap/bc/gui/sap/its/webgui";
+    icon = "chromium";
+    categories = [ "Network" ];
+  };
 in {
   config = {
-  # Tint2 panel configuration (only when not using the complete-config import)
-  environment.etc."xdg/tint2/tint2rc".text = mkIf (cfg.enableTint2 && (mkNot cfg.useCompleteConfig)) ''
+    environment.etc."xdg/tint2/tint2rc".text = ''
       panel_items = LTSC
       panel_position = bottom center horizontal
       panel_size = 100% 48
@@ -77,25 +95,7 @@ in {
       systray_icon_size = 24
       systray_icon_asb = 100 0 0
       systray_monitor = 1
-      systray_name_filter =
-
-      # Clock
-      time1_format = %H:%M
-      time2_format = %A %d %B
-      time1_timezone =
-      time2_timezone =
-      time1_font = sans 10
-      time2_font = sans 8
-      clock_font_color = #ffffff 100
-      clock_padding = 8 4
-      clock_background_id = 0
-      clock_tooltip = %A %d %B %Y
-      clock_tooltip_timezone =
-      clock_lclick_command =
-      clock_rclick_command =
-      clock_mclick_command =
-      clock_uwheel_command =
-      clock_dwheel_command =
+      systray_name_filter = 
 
       # Launcher
       launcher_padding = 8 12 8
@@ -106,6 +106,38 @@ in {
       launcher_icon_theme_override = 0
       startup_notifications = 1
       launcher_tooltip = 1
+      launcher_item_app = ${sap}/share/applications/web.desktop
+      launcher_item_app = ${ips}/share/applications/ips.desktop
+      launcher_item_app = ${intranet}/share/applications/sap.desktop
+
+      # Clock
+      time1_format = %H:%M
+      time2_format = %A %d %B
+      time1_timezone = 
+      time2_timezone = 
+      time1_font = sans 10
+      time2_font = sans 8
+      clock_font_color = #ffffff 100
+      clock_padding = 8 4
+      clock_background_id = 0
+      clock_tooltip = %A %d %B %Y
+      clock_tooltip_timezone = 
+      clock_lclick_command = 
+      clock_rclick_command = 
+      clock_mclick_command = 
+      clock_uwheel_command = 
+      clock_dwheel_command = 
+
+      # Battery
+      battery_tooltip = 1
+      battery_low_status = 10
+      battery_low_cmd = 
+      battery_full_cmd = 
+      bat1_font_color = #ffffff 100
+      bat2_font_color = #ffffff 100
+      battery_padding = 1 0
+      battery_background_id = 0
+      battery_hide = 101
 
       # Tooltip
       tooltip_show_timeout = 0.5
