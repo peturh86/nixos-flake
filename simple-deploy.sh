@@ -14,6 +14,10 @@ KIOSK_PASSWORD="${KIOSK_PASSWORD:-}"
 TIMEZONE="${TIMEZONE:-UTC}"
 LOCALE="${LOCALE:-en_US.UTF-8}"
 KIOSK_URL="${KIOSK_URL:-https://factory-app.local}"
+WIFI_ENABLE="${WIFI_ENABLE:-false}"
+WIFI_SSID="${WIFI_SSID:-}"
+WIFI_PASSWORD="${WIFI_PASSWORD:-}"
+WIFI_HIDDEN="${WIFI_HIDDEN:-false}"
 
 # === Interactive Disk Selection ===
 if [ -z "$DISK" ]; then
@@ -46,6 +50,13 @@ echo "Kiosk User: $KIOSK_USER"
 echo "Timezone: $TIMEZONE"
 echo "Locale: $LOCALE"
 echo "Kiosk URL: $KIOSK_URL"
+if [ "$WIFI_ENABLE" = "true" ]; then
+  echo "WiFi: Enabled"
+  echo "WiFi SSID: $WIFI_SSID"
+  echo "WiFi Hidden: $WIFI_HIDDEN"
+else
+  echo "WiFi: Disabled"
+fi
 echo
 
 # Confirm before proceeding
@@ -65,7 +76,7 @@ echo "🔧 Step 2: Mounting partitions..."
 ./scripts/mount.sh "$DISK"
 
 echo "🔧 Step 3: Configuring NixOS..."
-./scripts/configure.sh "$HOSTNAME" "$KIOSK_USER" "$KIOSK_PASSWORD" "$TIMEZONE" "$LOCALE" "$KIOSK_URL"
+./scripts/configure.sh "$HOSTNAME" "$KIOSK_USER" "$KIOSK_PASSWORD" "$TIMEZONE" "$LOCALE" "$KIOSK_URL" "$WIFI_ENABLE" "$WIFI_SSID" "$WIFI_PASSWORD" "$WIFI_HIDDEN"
 
 echo "🔧 Step 3.5: Copying hardware configuration to repo..."
 mkdir -p "hosts/$HOSTNAME"

@@ -40,6 +40,40 @@ export KIOSK_URL=https://my-app.local
 | `KIOSK_URL` | `https://factory-app.local` | URL to open in kiosk mode |
 | `BOOT_SIZE` | `512MB` | EFI boot partition size |
 | `SWAP_SIZE` | `8GB` | Swap partition size |
+| `WIFI_ENABLE` | `false` | Enable WiFi configuration |
+| `WIFI_SSID` | *(empty)* | WiFi network name (SSID) |
+| `WIFI_PASSWORD` | *(empty)* | WiFi network password |
+| `WIFI_HIDDEN` | `false` | Whether the WiFi network is hidden |
+
+## 📶 WiFi Configuration
+
+The kiosk system supports WiFi connectivity through NetworkManager. Configure WiFi by editing the host configuration:
+
+```nix
+# In hosts/kiosk-001/configuration.nix
+services.kiosk.wifi = {
+  enable = true;
+  ssid = "YourWiFiNetwork";
+  password = "YourWiFiPassword";
+  hidden = false;  # Set to true if network is hidden
+};
+```
+
+### WiFi Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `enable` | bool | `false` | Enable WiFi configuration |
+| `ssid` | string | `""` | WiFi network name (SSID) |
+| `password` | string | `""` | WiFi network password |
+| `hidden` | bool | `false` | Whether the network is hidden |
+
+### WiFi Troubleshooting
+
+- Check WiFi status: `nmcli device status`
+- List available networks: `nmcli device wifi list`
+- Connect manually: `nmcli device wifi connect <SSID> password <PASSWORD>`
+- View connection logs: `journalctl -u NetworkManager`
 
 ## 🔧 Disk Support
 
@@ -103,13 +137,15 @@ Check these log files for debugging:
 
 ## 📝 Examples
 
-### Deploy to NVMe disk with custom settings
+### Deploy with WiFi configuration
 ```bash
 DISK=/dev/nvme0n1 \
 HOSTNAME=production-kiosk \
 KIOSK_USER=operator \
 KIOSK_URL=https://factory.local \
-TIMEZONE=America/New_York \
+WIFI_ENABLE=true \
+WIFI_SSID="FactoryWiFi" \
+WIFI_PASSWORD="secure123" \
 ./simple-deploy.sh
 ```
 
