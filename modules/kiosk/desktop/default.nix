@@ -20,6 +20,16 @@ in {
   };
 
   config = {
+    # Enable browsers
+    programs.firefox.enable = mkDefault true;
+    programs.chromium.enable = mkDefault true;
+
+    # Enable Wine for Windows applications
+    programs.wine.enable = mkDefault true;
+
+    # Enable Git
+    programs.git.enable = mkDefault true;
+
     # X11 and Display Manager
     services.xserver.enable = mkDefault true;
     services.xserver.displayManager.lightdm.enable = mkDefault cfg.enableLightDM;
