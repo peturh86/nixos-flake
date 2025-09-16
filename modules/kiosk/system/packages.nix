@@ -19,7 +19,7 @@ in {
     networkmanager
     wpa_supplicant
     iw
-    wireless-tools
+    wirelesstools
 
     # System monitoring
     pciutils
