@@ -39,8 +39,8 @@ in {
     services.xserver.desktopManager.xterm.enable = mkDefault false;
     services.xserver.windowManager.openbox.enable = mkDefault true;
 
-    # Openbox menu configuration
-    environment.etc."xdg/openbox/menu.xml".text = ''
+  # Openbox menu configuration (only when not using the complete-config import)
+  environment.etc."xdg/openbox/menu.xml".text = mkIf (mkNot cfg.useCompleteConfig) ''
       <?xml version="1.0" encoding="UTF-8"?>
       <openbox_menu xmlns="http://openbox.org/"
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -110,8 +110,8 @@ in {
       </openbox_menu>
     '';
 
-    # Openbox configuration
-    environment.etc."xdg/openbox/rc.xml".text = ''
+  # Openbox configuration (only when not using the complete-config import)
+  environment.etc."xdg/openbox/rc.xml".text = mkIf (mkNot cfg.useCompleteConfig) ''
       <?xml version="1.0" encoding="UTF-8"?>
       <openbox_config xmlns="http://openbox.org/"
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

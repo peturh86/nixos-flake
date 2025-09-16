@@ -6,8 +6,8 @@ let
   cfg = config.services.kiosk;
 in {
   config = {
-    # Tint2 panel configuration
-    environment.etc."xdg/tint2/tint2rc".text = mkIf cfg.enableTint2 ''
+  # Tint2 panel configuration (only when not using the complete-config import)
+  environment.etc."xdg/tint2/tint2rc".text = mkIf (cfg.enableTint2 && (mkNot cfg.useCompleteConfig)) ''
       panel_items = LTSC
       panel_position = bottom center horizontal
       panel_size = 100% 48

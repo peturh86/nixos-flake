@@ -12,6 +12,7 @@ in {
     ./kiosk/desktop/tint2.nix
     ./kiosk/desktop/tint2-autostart.nix
     ./kiosk/desktop/desktop-entries.nix
+  ./kiosk/desktop/complete-config-imports.nix
     ./kiosk/autostart/default.nix
     ./kiosk/autostart/tint2.nix
     ./kiosk/system/default.nix
@@ -19,6 +20,11 @@ in {
 
   options.services.kiosk = {
     # All options are now defined in the individual sub-modules
+    useCompleteConfig = mkOption {
+      type = types.bool;
+      default = false;
+      description = "When true, prefer complete-config's Openbox and Tint2 configs instead of the kiosk module defaults.";
+    };
   };
 
   config = {
