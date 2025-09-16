@@ -25,9 +25,6 @@ in {
     programs.firefox.enable = mkDefault true;
     programs.chromium.enable = mkDefault true;
 
-    # Enable Wine for Windows applications
-    programs.wine.enable = mkDefault true;
-
     # Enable Git
     programs.git.enable = mkDefault true;
 
