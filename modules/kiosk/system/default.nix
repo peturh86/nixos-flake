@@ -5,6 +5,13 @@ with lib;
 let
   cfg = config.services.kiosk;
 in {
+  imports = [
+    ./packages.nix
+    ./networking.nix
+    ./boot.nix
+    ./settings.nix
+  ];
+
   options.services.kiosk = {
     timeZone = mkOption {
       type = types.str;
@@ -52,62 +59,8 @@ in {
   };
 
   config = {
-    # Essential system packages
-    environment.systemPackages = with pkgs; [
-      # Basic utilities
-      git
-      vim
-      wget
-      curl
-      htop
-      tmux
-
-      # Networking tools
-      networkmanager
-      wpa_supplicant
-      iw
-      wireless-tools
-
-      # System monitoring
-      pciutils
-      usbutils
-      lshw
-    ];
-
     # Remote management
     services.openssh.enable = mkDefault true;
-
-    # Boot loader
-    boot.loader.systemd-boot.enable = mkDefault true;
-    boot.loader.efi.canTouchEfiVariables = mkDefault true;
-
-    # System settings
-    time.timeZone = mkDefault cfg.timeZone;
-    i18n.defaultLocale = mkDefault cfg.locale;
-    console.keyMap = mkDefault cfg.keyMap;
-
-    # Networking
-    networking.networkmanager.enable = mkDefault true;
-
-    # WiFi configuration
-    networking.wireless = mkIf cfg.wifi.enable {
-      enable = true;
-      userControlled.enable = true;
-      networks = mkIf (cfg.wifi.ssid != "") {
-        "${cfg.wifi.ssid}" = {
-          psk = cfg.wifi.password;
-          hidden = cfg.wifi.hidden;
-        };
-      };
-    };
-
-    # NetworkManager WiFi configuration (alternative approach)
-    networking.networkmanager = mkIf cfg.wifi.enable {
-      wifi = {
-        backend = "wpa_supplicant";
-        powersave = false;  # Keep WiFi active for kiosk
-      };
-    };
 
     system.stateVersion = "25.05";
   };
