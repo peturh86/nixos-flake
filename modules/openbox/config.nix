@@ -105,9 +105,6 @@
 
       <!-- Mouse bindings -->
       <mouse>
-        <dragThreshold>1</dragThreshold>
-        <doubleClickTime>200</doubleClickTime>
-
         <!-- Desktop right-click menu -->
         <context name="Desktop">
           <mousebind button="Right" action="Press">
