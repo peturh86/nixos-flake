@@ -154,44 +154,65 @@
     </keybind>
   </keyboard>
 
-  <mouse>
+    <mouse>
     <dragThreshold>1</dragThreshold>
     <doubleClickTime>200</doubleClickTime>
     <screenEdgeWarpTime>400</screenEdgeWarpTime>
     <screenEdgeWarpMouse>false</screenEdgeWarpMouse>
 
     <context name="Frame">
-      <mousebind button="A-Left" action="Press">
+        <mousebind button="A-Left" action="Press">
         <action name="Focus"/>
         <action name="Raise"/>
-      </mousebind>
-
-      <mousebind button="A-Left" action="Click">
-        <action name="Unshade"/>
-      </mousebind>
-
-      <mousebind button="A-Left" action="Drag">
+        </mousebind>
+        <mousebind button="A-Left" action="Drag">
         <action name="Move"/>
-      </mousebind>
+        </mousebind>
+        <mousebind button="A-Right" action="Drag">
+        <action name="Resize"/>
+        </mousebind>
+    </context>
 
-      <mousebind button="A-Right" action="Press">
+    <context name="Titlebar">
+        <mousebind button="Left" action="Click">
         <action name="Focus"/>
         <action name="Raise"/>
-      </mousebind>
+        <action name="Activate"/>
+        </mousebind>
+        <mousebind button="Left" action="Drag">
+        <action name="Move"/>
+        </mousebind>
+        <mousebind button="DoubleClick">
+        <action name="ToggleMaximizeFull"/>
+        </mousebind>
+    </context>
 
-      <mousebind button="A-Right" action="Drag">
-        <action name="Resize"/>
-      </mousebind>
+    <context name="Titlebar Close">
+        <mousebind button="Left" action="Click">
+        <action name="Close"/>
+        </mousebind>
+    </context>
+
+    <context name="Titlebar Maximize">
+        <mousebind button="Left" action="Click">
+        <action name="ToggleMaximizeFull"/>
+        </mousebind>
+    </context>
+
+    <context name="Titlebar Iconify">
+        <mousebind button="Left" action="Click">
+        <action name="Iconify"/>
+        </mousebind>
     </context>
 
     <context name="Desktop">
-      <mousebind button="Right" action="Press">
+        <mousebind button="Right" action="Press">
         <action name="ShowMenu">
-          <menu>root-menu</menu>
+            <menu>root-menu</menu>
         </action>
-      </mousebind>
+        </mousebind>
     </context>
-  </mouse>
+    </mouse>
 
   <menu>
     <file>/etc/xdg/openbox/menu.xml</file>
