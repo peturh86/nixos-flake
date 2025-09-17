@@ -96,6 +96,7 @@ in {
       iw            # Wireless tools
       wirelesstools # Additional wireless utilities
       lshw          # Hardware info
+      networkmanagerapplet # NetworkManager GUI
     ];
 
     # Enable essential programs
@@ -122,10 +123,22 @@ in {
         wireless.enable = mkDefault false;
       }
       (mkIf cfg.wifi.enable {
-        wireless.enable = true;
-        wireless.networks."${cfg.wifi.ssid}" = {
-          psk = cfg.wifi.password;
-          hidden = cfg.wifi.hidden;
+        networkmanager.ensureProfiles.profiles."${cfg.wifi.ssid}" = {
+          connection = {
+            id = cfg.wifi.ssid;
+            type = "wifi";
+            autoconnect = true;
+          };
+          wifi = {
+            mode = "infrastructure";
+            ssid = cfg.wifi.ssid;
+            hidden = cfg.wifi.hidden;
+          };
+          wifi-security = mkIf (cfg.wifi.password != "") {
+            auth-alg = "open";
+            key-mgmt = "wpa-psk";
+            psk = cfg.wifi.password;
+          };
         };
       })
     ];

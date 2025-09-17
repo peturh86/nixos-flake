@@ -160,8 +160,63 @@
             <maximized>false</maximized>
           </application>
 
+          <!-- Chromium browser windows -->
+          <application class="chromium-browser" type="normal">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>1</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
+          </application>
+
           <!-- Google Chrome apps should have window decorations -->
           <application class="google-chrome" type="normal">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>1</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
+          </application>
+
+          <!-- Chrome browser windows -->
+          <application class="google-chrome-stable" type="normal">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>1</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
+          </application>
+
+          <!-- Any window with chromium or chrome in the class -->
+          <application class="*chromium*" type="normal">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>1</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
+          </application>
+
+          <application class="*chrome*" type="normal">
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>

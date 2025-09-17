@@ -39,6 +39,10 @@ EOF
 
 # Add WiFi configuration if enabled
 if [ "$WIFI_ENABLE" = "true" ]; then
+  if [ -z "$WIFI_SSID" ]; then
+    echo "❌ Error: WIFI_SSID is required when WIFI_ENABLE=true"
+    exit 1
+  fi
   cat >> /mnt/etc/nixos/kiosk-config.nix << EOF
     wifi = {
       enable = true;
