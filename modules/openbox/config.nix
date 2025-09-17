@@ -105,12 +105,45 @@
 
       <!-- Mouse bindings -->
       <mouse>
-        <!-- Desktop right-click menu -->
+        <dragThreshold>1</dragThreshold>
+        <doubleClickTime>200</doubleClickTime>
+
+        <!-- Default behavior restored -->
+        <context name="Border">
+          <mousebind button="Left" action="Press">
+            <action name="Focus"/>
+            <action name="Raise"/>
+          </mousebind>
+          <mousebind button="Left" action="Drag">
+            <action name="Resize"/>
+          </mousebind>
+        </context>
+
+        <context name="Titlebar">
+          <mousebind button="Left" action="Drag">
+            <action name="Move"/>
+          </mousebind>
+          <mousebind button="DoubleClick">
+            <action name="ToggleMaximizeFull"/>
+          </mousebind>
+        </context>
+
+        <context name="Titlebar Close">
+          <mousebind button="Left" action="Click"><action name="Close"/></mousebind>
+        </context>
+
+        <context name="Titlebar Maximize">
+          <mousebind button="Left" action="Click"><action name="ToggleMaximizeFull"/></mousebind>
+        </context>
+
+        <context name="Titlebar Iconify">
+          <mousebind button="Left" action="Click"><action name="Iconify"/></mousebind>
+        </context>
+
+        <!-- Your custom desktop right-click menu -->
         <context name="Desktop">
           <mousebind button="Right" action="Press">
-            <action name="ShowMenu">
-              <menu>root-menu</menu>
-            </action>
+            <action name="ShowMenu"><menu>root-menu</menu></action>
           </mousebind>
         </context>
       </mouse>
