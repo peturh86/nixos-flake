@@ -1,0 +1,5 @@
+<keyboard>
+  <keybind key="A-F4"><action name="Close" /></keybind>
+  <keybind key="A-F10"><action name="Maximize" /></keybind>
+  <keybind key="A-F9"><action name="Iconify" /></keybind>
+</keyboard>

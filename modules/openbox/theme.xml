@@ -1,0 +1,11 @@
+<theme>
+  <name>Onyx</name>
+  <titleLayout>NLIMC</titleLayout>
+</theme>
+
+<desktops>
+  <number>1</number>
+  <firstdesk>1</firstdesk>
+  <names><name>Desktop</name></names>
+  <popupTime>0</popupTime>
+</desktops>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_menu xmlns="http://openbox.org/">
+  <menu id="admin-menu" label="Admin Tools">
+    <item label="Terminal">
+      <action name="Execute">
+        <command>konsole</command>
+      </action>
+    </item>
+    <item label="Reboot">
+      <action name="Execute">
+        <command>systemctl reboot</command>
+      </action>
+    </item>
+  </menu>
+</openbox_menu>

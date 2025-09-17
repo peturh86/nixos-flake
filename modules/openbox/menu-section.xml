@@ -1,0 +1,10 @@
+<menu>
+    <file>/etc/xdg/openbox/menu-user.xml</file>
+    <file>/etc/xdg/openbox/menu-admin.xml</file>
+    <hideDelay>200</hideDelay>
+    <middle>no</middle>
+    <submenuShowDelay>100</submenuShowDelay>
+    <submenuHideDelay>400</submenuHideDelay>
+    <applicationIcons>yes</applicationIcons>
+    <manageDesktops>no</manageDesktops>
+</menu>
