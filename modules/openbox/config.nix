@@ -146,6 +146,20 @@
             <maximized>true</maximized>
           </application>
 
+          <!-- SAP application specific rule -->
+          <application class="Chromium-browser" name="sapapp-p1.postur.is__sab_bc_gui_sap_its_webui">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>1</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>no</maximized>
+          </application>
+
           <!-- Chromium/Chromium apps should have window decorations -->
           <application class="chromium" type="normal">
             <decor>yes</decor>
