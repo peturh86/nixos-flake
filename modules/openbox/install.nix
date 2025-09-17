@@ -10,7 +10,7 @@ with lib;
     # Required packages for Openbox functionality
     environment.systemPackages = with pkgs; [
       openbox      # Window manager
-      konsole      # Terminal for menu
+      kdePackages.konsole      # Terminal for menu
       xterm        # Fallback terminal
     ];
   };
