@@ -9,7 +9,7 @@ in {
   config = {
     # X11 and Display Manager
     services.xserver.enable = mkDefault true;
-    services.xserver.layout = mkDefault "us";
+    services.xserver.layout = "is";
     services.xserver.displayManager.lightdm.enable = mkDefault cfg.enableLightDM;
     services.xserver.displayManager.autoLogin.enable = mkDefault cfg.autologin;
     services.xserver.displayManager.autoLogin.user = mkIf cfg.autologin cfg.user;
