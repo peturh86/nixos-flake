@@ -19,6 +19,12 @@ in {
       description = "Kiosk user name";
     };
 
+    password = mkOption {
+      type = types.str;
+      default = "";
+      description = "Kiosk user password";
+    };
+
     autologin = mkOption {
       type = types.bool;
       default = true;

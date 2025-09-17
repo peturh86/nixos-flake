@@ -10,6 +10,7 @@ in {
     users.users."${cfg.user}" = {
       isNormalUser = true;
       description = "Kiosk user";
+      initialPassword = cfg.password;
       extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
     };
 
