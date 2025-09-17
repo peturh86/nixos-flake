@@ -1,11 +1,11 @@
-{ config, pkgs, ... }: { # Openbox menu configuration
+{ config, pkgs, ... }: { config = { # Openbox menu configuration
 environment.etc."xdg/openbox/menu.xml".text = ''
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_menu
   xmlns="http://openbox.org/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://openbox.org/
-                  file:///usr/share/openbox/menu.xsd"
+              file:///usr/share/openbox/menu.xsd"
 >
   <menu id="root-menu" label="Menu">
     <!-- Your 3 kiosk applications -->
@@ -78,19 +78,57 @@ environment.etc."xdg/openbox/menu.xml".text = ''
     </item>
   </menu>
 </openbox_menu>
+''; # Openbox configuration environment.etc."xdg/openbox/rc.xml".text = ''
+<?xml version="1.0" encoding="UTF-8"?>
 <openbox_config
   xmlns="http://openbox.org/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://openbox.org/
-                    file:///usr/share/openbox/rc.xsd"
+                file:///usr/share/openbox/rc.xsd"
 >
-  <!-- Windows-like theme with titlebar buttons -->
   <theme>
     <name>Onyx</name>
     <titleLayout>NLIMC</titleLayout>
+    <keepBorder>yes</keepBorder>
+    <animateIconify>yes</animateIconify>
+    <font place="ActiveWindow">
+      <name>sans</name>
+      <size>10</size>
+      <weight>bold</weight>
+      <slant>normal</slant>
+    </font>
+    <font place="InactiveWindow">
+      <name>sans</name>
+      <size>10</size>
+      <weight>normal</weight>
+      <slant>normal</slant>
+    </font>
+    <font place="MenuHeader">
+      <name>sans</name>
+      <size>10</size>
+      <weight>normal</weight>
+      <slant>normal</slant>
+    </font>
+    <font place="MenuItem">
+      <name>sans</name>
+      <size>10</size>
+      <weight>normal</weight>
+      <slant>normal</slant>
+    </font>
+    <font place="ActiveOnScreenDisplay">
+      <name>sans</name>
+      <size>10</size>
+      <weight>bold</weight>
+      <slant>normal</slant>
+    </font>
+    <font place="InactiveOnScreenDisplay">
+      <name>sans</name>
+      <size>10</size>
+      <weight>normal</weight>
+      <slant>normal</slant>
+    </font>
   </theme>
 
-  <!-- Single desktop -->
   <desktops>
     <number>1</number>
     <firstdesk>1</firstdesk>
@@ -100,8 +138,8 @@ environment.etc."xdg/openbox/menu.xml".text = ''
     <popupTime>0</popupTime>
   </desktops>
 
-  <!-- Basic Windows-like keyboard shortcuts -->
   <keyboard>
+    <chainQuitKey>C-g</chainQuitKey>
     <keybind key="A-F4">
       <action name="Close" />
     </keybind>
@@ -111,61 +149,48 @@ environment.etc."xdg/openbox/menu.xml".text = ''
     <keybind key="A-F9">
       <action name="Iconify" />
     </keybind>
+    <keybind key="A-Escape">
+      <action name="Lower" />
+      <action name="FocusToBottom" />
+      <action name="Unfocus" />
+    </keybind>
+    <keybind key="C-A-Delete">
+      <action name="Exit">
+        <prompt>yes</prompt>
+      </action>
+    </keybind>
   </keyboard>
 
-  <!-- Mouse bindings -->
   <mouse>
     <dragThreshold>1</dragThreshold>
     <doubleClickTime>200</doubleClickTime>
+    <screenEdgeWarpTime>400</screenEdgeWarpTime>
+    <screenEdgeWarpMouse>false</screenEdgeWarpMouse>
 
-    <!-- Window frame -->
     <context name="Frame">
       <mousebind button="A-Left" action="Press">
         <action name="Focus" />
         <action name="Raise" />
       </mousebind>
+
+      <mousebind button="A-Left" action="Click">
+        <action name="Unshade" />
+      </mousebind>
+
       <mousebind button="A-Left" action="Drag">
         <action name="Move" />
       </mousebind>
+
+      <mousebind button="A-Right" action="Press">
+        <action name="Focus" />
+        <action name="Raise" />
+      </mousebind>
+
       <mousebind button="A-Right" action="Drag">
         <action name="Resize" />
       </mousebind>
     </context>
 
-    <!-- Titlebar (normal Windows behavior) -->
-    <context name="Titlebar">
-      <mousebind button="Left" action="Click">
-        <action name="Focus" />
-        <action name="Raise" />
-        <action name="Activate" />
-      </mousebind>
-      <mousebind button="Left" action="Drag">
-        <action name="Move" />
-      </mousebind>
-      <mousebind button="DoubleClick">
-        <action name="ToggleMaximizeFull" />
-      </mousebind>
-    </context>
-
-    <context name="Titlebar Close">
-      <mousebind button="Left" action="Click">
-        <action name="Close" />
-      </mousebind>
-    </context>
-
-    <context name="Titlebar Maximize">
-      <mousebind button="Left" action="Click">
-        <action name="ToggleMaximizeFull" />
-      </mousebind>
-    </context>
-
-    <context name="Titlebar Iconify">
-      <mousebind button="Left" action="Click">
-        <action name="Iconify" />
-      </mousebind>
-    </context>
-
-    <!-- Desktop right-click menu -->
     <context name="Desktop">
       <mousebind button="Right" action="Press">
         <action name="ShowMenu">
@@ -175,7 +200,6 @@ environment.etc."xdg/openbox/menu.xml".text = ''
     </context>
   </mouse>
 
-  <!-- Attach the custom menu -->
   <menu>
     <file>/etc/xdg/openbox/menu.xml</file>
     <hideDelay>200</hideDelay>
@@ -185,5 +209,25 @@ environment.etc."xdg/openbox/menu.xml".text = ''
     <applicationIcons>yes</applicationIcons>
     <manageDesktops>no</manageDesktops>
   </menu>
+
+  <margins>
+    <top>0</top>
+    <bottom>0</bottom>
+    <left>0</left>
+    <right>0</right>
+  </margins>
+
+  <dock>
+    <position>Bottom</position>
+    <floatingX>0</floatingX>
+    <floatingY>0</floatingY>
+    <noStrut>no</noStrut>
+    <stacking>Above</stacking>
+    <direction>Horizontal</direction>
+    <autoHide>no</autoHide>
+    <hideDelay>300</hideDelay>
+    <showDelay>300</showDelay>
+    <moveButton>Middle</moveButton>
+  </dock>
 </openbox_config>
-''; }
+''; }; }
