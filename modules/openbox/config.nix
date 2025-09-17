@@ -146,6 +146,34 @@
             <maximized>true</maximized>
           </application>
 
+          <!-- Chromium/Chromium apps should have window decorations -->
+          <application class="chromium" type="normal">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>1</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
+          </application>
+
+          <!-- Google Chrome apps should have window decorations -->
+          <application class="google-chrome" type="normal">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>1</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
+          </application>
+
           <!-- Other applications should be windowed for Tint2 access -->
           <application class="*">
             <decor>yes</decor>
