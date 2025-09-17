@@ -188,4 +188,4 @@ environment.etc."xdg/openbox/menu.xml".text = ''
     <manageDesktops>no</manageDesktops>
   </menu>
 </openbox_config>
-'';; }; }
+''; }; }
