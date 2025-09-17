@@ -151,7 +151,7 @@
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>
-            <desktop>1</desktop>
+            <desktop>0</desktop>
             <layer>normal</layer>
             <iconic>no</iconic>
             <skip_pager>no</skip_pager>
@@ -165,7 +165,7 @@
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>
-            <desktop>1</desktop>
+            <desktop>0</desktop>
             <layer>normal</layer>
             <iconic>no</iconic>
             <skip_pager>no</skip_pager>
@@ -179,7 +179,7 @@
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>
-            <desktop>1</desktop>
+            <desktop>0</desktop>
             <layer>normal</layer>
             <iconic>no</iconic>
             <skip_pager>no</skip_pager>
@@ -193,7 +193,7 @@
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>
-            <desktop>1</desktop>
+            <desktop>0</desktop>
             <layer>normal</layer>
             <iconic>no</iconic>
             <skip_pager>no</skip_pager>
@@ -207,7 +207,7 @@
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>
-            <desktop>1</desktop>
+            <desktop>0</desktop>
             <layer>normal</layer>
             <iconic>no</iconic>
             <skip_pager>no</skip_pager>
@@ -221,7 +221,7 @@
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>
-            <desktop>1</desktop>
+            <desktop>0</desktop>
             <layer>normal</layer>
             <iconic>no</iconic>
             <skip_pager>no</skip_pager>
@@ -234,7 +234,21 @@
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>
-            <desktop>1</desktop>
+            <desktop>0</desktop>
+            <layer>normal</layer>
+            <iconic>no</iconic>
+            <skip_pager>no</skip_pager>
+            <skip_taskbar>no</skip_taskbar>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
+          </application>
+
+          <!-- Konsole terminal windows -->
+          <application class="konsole" type="normal">
+            <decor>yes</decor>
+            <shade>yes</shade>
+            <focus>yes</focus>
+            <desktop>0</desktop>
             <layer>normal</layer>
             <iconic>no</iconic>
             <skip_pager>no</skip_pager>
@@ -248,7 +262,7 @@
             <decor>yes</decor>
             <shade>yes</shade>
             <focus>yes</focus>
-            <desktop>1</desktop>
+            <desktop>0</desktop>
             <layer>normal</layer>
             <iconic>no</iconic>
             <skip_pager>no</skip_pager>
