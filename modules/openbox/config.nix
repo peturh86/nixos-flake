@@ -1,362 +1,187 @@
-{ config, pkgs, ... }: { config = { # Openbox menu configuration (copied from
-complete-config) environment.etc."xdg/openbox/menu.xml".text = ''
-<?xml version="1.0" encoding="UTF-8"?>
-<openbox_menu
-  xmlns="http://openbox.org/"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://openbox.org/
-                    file:///usr/share/openbox/menu.xsd"
->
-  <menu id="root-menu" label="Menu">
-    <!-- Your 3 kiosk applications -->
-    <item label="Web Browser">
-      <action name="Execute">
-        <command>firefox --new-window https://www.ja.is</command>
-      </action>
-    </item>
+{ config, pkgs, ... }:
 
-    <item label="IPS">
-      <action name="Execute">
-        <command>ips</command>
-      </action>
-    </item>
+{
+  # Openbox menu configuration
+  environment.etc."xdg/openbox/menu.xml".text = ''
+    <?xml version="1.0" encoding="UTF-8"?>
+    <openbox_menu
+      xmlns="http://openbox.org/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://openbox.org/
+                  file:///usr/share/openbox/menu.xsd">
 
-    <item label="SAP">
-      <action name="Execute">
-        <command
-          >chromium
-          --app=https://sapapp-p1.postur.is/sap/bc/gui/sap/its/webgui</command
-        >
-      </action>
-    </item>
+      <menu id="root-menu" label="Menu">
+        <!-- Your 3 kiosk applications -->
+        <item label="Web Browser">
+          <action name="Execute">
+            <command>firefox --new-window https://www.ja.is</command>
+          </action>
+        </item>
 
-    <separator />
+        <item label="IPS">
+          <action name="Execute">
+            <command>ips</command>
+          </action>
+        </item>
 
-    <!-- Debug tools -->
-    <menu id="debug-menu" label="Debug Tools">
-      <item label="Terminal">
-        <action name="Execute">
-          <command>konsole</command>
-        </action>
-      </item>
+        <item label="SAP">
+          <action name="Execute">
+            <command>chromium --app=https://sapapp-p1.postur.is/sap/bc/gui/sap/its/webgui</command>
+          </action>
+        </item>
 
-      <item label="IPS Debug">
-        <action name="Execute">
-          <command
-            >konsole -e sh -c 'ips-debug; echo "Press Enter to close...";
-            read'</command
-          >
-        </action>
-      </item>
+        <separator />
 
-      <item label="IPS Status">
-        <action name="Execute">
-          <command
-            >konsole -e sh -c 'ips-status; echo "Press Enter to close...";
-            read'</command
-          >
-        </action>
-      </item>
+        <!-- Debug tools -->
+        <menu id="debug-menu" label="Debug Tools">
+          <item label="Terminal">
+            <action name="Execute">
+              <command>konsole</command>
+            </action>
+          </item>
 
-      <item label="Wine Config">
-        <action name="Execute">
-          <command
-            >konsole -e sh -c 'export WINEPREFIX=$HOME/.wine-ips;
-            winecfg'</command
-          >
-        </action>
-      </item>
-    </menu>
+          <item label="IPS Debug">
+            <action name="Execute">
+              <command>konsole -e sh -c 'ips-debug; echo "Press Enter to close..."; read'</command>
+            </action>
+          </item>
 
-    <separator />
+          <item label="IPS Status">
+            <action name="Execute">
+              <command>konsole -e sh -c 'ips-status; echo "Press Enter to close..."; read'</command>
+            </action>
+          </item>
 
-    <!-- System controls -->
-    <item label="Reboot">
-      <action name="Execute">
-        <command>systemctl reboot</command>
-      </action>
-    </item>
-  </menu>
-</openbox_menu>
-''; # Openbox configuration environment.etc."xdg/openbox/rc.xml".text = ''
-<?xml version="1.0" encoding="UTF-8"?>
-<openbox_config
-  xmlns="http://openbox.org/"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://openbox.org/
-                      file:///usr/share/openbox/rc.xsd"
->
-  <theme>
-    <name>Clearlooks</name>
-    <titleLayout>NLIMC</titleLayout>
-    <keepBorder>yes</keepBorder>
-    <animateIconify>yes</animateIconify>
-    <font place="ActiveWindow">
-      <name>sans</name>
-      <size>10</size>
-      <weight>bold</weight>
-      <slant>normal</slant>
-    </font>
-    <font place="InactiveWindow">
-      <name>sans</name>
-      <size>10</size>
-      <weight>normal</weight>
-      <slant>normal</slant>
-    </font>
-    <font place="MenuHeader">
-      <name>sans</name>
-      <size>10</size>
-      <weight>normal</weight>
-      <slant>normal</slant>
-    </font>
-    <font place="MenuItem">
-      <name>sans</name>
-      <size>10</size>
-      <weight>normal</weight>
-      <slant>normal</slant>
-    </font>
-    <font place="ActiveOnScreenDisplay">
-      <name>sans</name>
-      <size>10</size>
-      <weight>bold</weight>
-      <slant>normal</slant>
-    </font>
-    <font place="InactiveOnScreenDisplay">
-      <name>sans</name>
-      <size>10</size>
-      <weight>normal</weight>
-      <slant>normal</slant>
-    </font>
-  </theme>
+          <item label="Wine Config">
+            <action name="Execute">
+              <command>konsole -e sh -c 'export WINEPREFIX=$HOME/.wine-ips; winecfg'</command>
+            </action>
+          </item>
+        </menu>
 
-  <desktops>
-    <number>1</number>
-    <firstdesk>1</firstdesk>
-    <names>
-      <name>Desktop</name>
-    </names>
-    <popupTime>0</popupTime>
-  </desktops>
+        <separator />
 
-  <applications>
-    <!-- Firefox in kiosk mode should be full-screen -->
-    <application class="firefox" role="browser">
-      <decor>no</decor>
-      <shade>no</shade>
-      <focus>yes</focus>
-      <desktop>1</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>yes</fullscreen>
-      <maximized>true</maximized>
-    </application>
+        <!-- System controls -->
+        <item label="Reboot">
+          <action name="Execute">
+            <command>systemctl reboot</command>
+          </action>
+        </item>
+      </menu>
+    </openbox_menu>
+  '';
 
-    <!-- SAP application specific rule -->
-    <application
-      class="Chromium-browser"
-      name="sapapp-p1.postur.is__sab_bc_gui_sap_its_webui"
-    >
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>no</maximized>
-    </application>
+  # Openbox configuration
+  environment.etc."xdg/openbox/rc.xml".text = ''
+    <?xml version="1.0" encoding="UTF-8"?>
+    <openbox_config
+      xmlns="http://openbox.org/"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://openbox.org/
+                    file:///usr/share/openbox/rc.xsd">
 
-    <!-- Chromium/Chromium apps should have window decorations -->
-    <application class="chromium" type="normal">
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>false</maximized>
-    </application>
+      <!-- Windows-like theme with titlebar buttons -->
+      <theme>
+        <name>Onyx</name>
+        <titleLayout>NLIMC</titleLayout>
+      </theme>
 
-    <!-- Chromium browser windows -->
-    <application class="chromium-browser" type="normal">
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>false</maximized>
-    </application>
+      <!-- Single desktop -->
+      <desktops>
+        <number>1</number>
+        <firstdesk>1</firstdesk>
+        <names>
+          <name>Desktop</name>
+        </names>
+        <popupTime>0</popupTime>
+      </desktops>
 
-    <!-- Google Chrome apps should have window decorations -->
-    <application class="google-chrome" type="normal">
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>false</maximized>
-    </application>
+      <!-- Basic Windows-like keyboard shortcuts -->
+      <keyboard>
+        <keybind key="A-F4"><action name="Close" /></keybind>
+        <keybind key="A-F10"><action name="Maximize" /></keybind>
+        <keybind key="A-F9"><action name="Iconify" /></keybind>
+      </keyboard>
 
-    <!-- Chrome browser windows -->
-    <application class="google-chrome-stable" type="normal">
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>false</maximized>
-    </application>
+      <!-- Mouse bindings -->
+      <mouse>
+        <dragThreshold>1</dragThreshold>
+        <doubleClickTime>200</doubleClickTime>
 
-    <!-- Any window with chromium or chrome in the class -->
-    <application class="*chromium*" type="normal">
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>false</maximized>
-    </application>
+        <!-- Window frame -->
+        <context name="Frame">
+          <mousebind button="A-Left" action="Press">
+            <action name="Focus" />
+            <action name="Raise" />
+          </mousebind>
+          <mousebind button="A-Left" action="Drag">
+            <action name="Move" />
+          </mousebind>
+          <mousebind button="A-Right" action="Drag">
+            <action name="Resize" />
+          </mousebind>
+        </context>
 
-    <application class="*chrome*" type="normal">
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>false</maximized>
-    </application>
+        <!-- Titlebar (normal Windows behavior) -->
+        <context name="Titlebar">
+          <mousebind button="Left" action="Click">
+            <action name="Focus" />
+            <action name="Raise" />
+            <action name="Activate" />
+          </mousebind>
+          <mousebind button="Left" action="Drag">
+            <action name="Move" />
+          </mousebind>
+          <mousebind button="DoubleClick">
+            <action name="ToggleMaximizeFull" />
+          </mousebind>
+        </context>
 
-    <!-- Konsole terminal windows -->
-    <application class="konsole" type="normal">
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>false</maximized>
-    </application>
+        <context name="Titlebar Close">
+          <mousebind button="Left" action="Click">
+            <action name="Close" />
+          </mousebind>
+        </context>
 
-    <!-- Other applications should be windowed for Tint2 access -->
-    <application class="*">
-      <decor>yes</decor>
-      <shade>yes</shade>
-      <focus>yes</focus>
-      <desktop>0</desktop>
-      <layer>normal</layer>
-      <iconic>no</iconic>
-      <skip_pager>no</skip_pager>
-      <skip_taskbar>no</skip_taskbar>
-      <fullscreen>no</fullscreen>
-      <maximized>false</maximized>
-    </application>
-  </applications>
+        <context name="Titlebar Maximize">
+          <mousebind button="Left" action="Click">
+            <action name="ToggleMaximizeFull" />
+          </mousebind>
+        </context>
 
-  <keyboard>
-    <chainQuitKey>C-g</chainQuitKey>
-    <keybind key="A-F4">
-      <action name="Close" />
-    </keybind>
-    <keybind key="A-Escape">
-      <action name="Lower" />
-      <action name="FocusToBottom" />
-      <action name="Unfocus" />
-    </keybind>
-    <keybind key="C-A-Delete">
-      <action name="Exit">
-        <prompt>yes</prompt>
-      </action>
-    </keybind>
-  </keyboard>
+        <context name="Titlebar Iconify">
+          <mousebind button="Left" action="Click">
+            <action name="Iconify" />
+          </mousebind>
+        </context>
 
-  <mouse>
-    <dragThreshold>1</dragThreshold>
-    <doubleClickTime>200</doubleClickTime>
-    <screenEdgeWarpTime>400</screenEdgeWarpTime>
-    <screenEdgeWarpMouse>false</screenEdgeWarpMouse>
+        <!-- Desktop right-click menu -->
+        <context name="Desktop">
+          <mousebind button="Right" action="Press">
+            <action name="ShowMenu">
+              <menu>root-menu</menu>
+            </action>
+          </mousebind>
+        </context>
+      </mouse>
 
-    <context name="Frame">
-      <mousebind button="A-Left" action="Press">
-        <action name="Focus" />
-        <action name="Raise" />
-      </mousebind>
+      <!-- Attach the custom menu -->
+      <menu>
+        <file>/etc/xdg/openbox/menu.xml</file>
+        <hideDelay>200</hideDelay>
+        <middle>no</middle>
+        <submenuShowDelay>100</submenuShowDelay>
+        <submenuHideDelay>400</submenuHideDelay>
+        <applicationIcons>yes</applicationIcons>
+        <manageDesktops>no</manageDesktops>
+      </menu>
 
-      <mousebind button="A-Left" action="Click">
-        <action name="Unshade" />
-      </mousebind>
-
-      <mousebind button="A-Left" action="Drag">
-        <action name="Move" />
-      </mousebind>
-    </context>
-
-    <context name="Desktop">
-      <mousebind button="Right" action="Press">
-        <action name="ShowMenu">
-          <menu>root-menu</menu>
-        </action>
-      </mousebind>
-    </context>
-  </mouse>
-
-  <menu>
-    <file>/etc/xdg/openbox/menu.xml</file>
-    <hideDelay>200</hideDelay>
-    <middle>no</middle>
-    <submenuShowDelay>100</submenuShowDelay>
-    <submenuHideDelay>400</submenuHideDelay>
-    <applicationIcons>yes</applicationIcons>
-    <manageDesktops>no</manageDesktops>
-  </menu>
-
-  <margins>
-    <top>0</top>
-    <bottom>0</bottom>
-    <left>0</left>
-    <right>0</right>
-  </margins>
-
-  <dock>
-    <position>Bottom</position>
-    <floatingX>0</floatingX>
-    <floatingY>0</floatingY>
-    <noStrut>no</noStrut>
-    <stacking>Above</stacking>
-    <direction>Horizontal</direction>
-    <autoHide>no</autoHide>
-    <hideDelay>300</hideDelay>
-    <showDelay>300</showDelay>
-    <moveButton>Middle</moveButton>
-  </dock>
-</openbox_config>
-''; }; }
+      <!-- Dock: keep tint2 at bottom -->
+      <dock>
+        <position>Bottom</position>
+        <stacking>Above</stacking>
+        <direction>Horizontal</direction>
+      </dock>
+    </openbox_config>
+  '';
+}
