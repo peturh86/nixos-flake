@@ -50,6 +50,36 @@ in {
         description = "Whether the WiFi network is hidden";
       };
     };
+
+    enableLightDM = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable LightDM display manager";
+    };
+
+    user = mkOption {
+      type = types.str;
+      default = "kiosk";
+      description = "Kiosk user name";
+    };
+
+    password = mkOption {
+      type = types.str;
+      default = "";
+      description = "Kiosk user password";
+    };
+
+    autologin = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Enable automatic login";
+    };
+
+    kioskUrl = mkOption {
+      type = types.str;
+      default = "https://factory-app.local";
+      description = "URL for kiosk mode Firefox";
+    };
   };
 
   config = {
