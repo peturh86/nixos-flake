@@ -179,39 +179,34 @@
         </keyboard>
 
         <mouse>
-          <dragThreshold>1</dragThreshold>
-          <doubleClickTime>200</doubleClickTime>
-          <screenEdgeWarpTime>400</screenEdgeWarpTime>
-          <screenEdgeWarpMouse>false</screenEdgeWarpMouse>
-          <context name="Frame">
+        <dragThreshold>1</dragThreshold>
+        <doubleClickTime>200</doubleClickTime>
+        <screenEdgeWarpTime>400</screenEdgeWarpTime>
+        <screenEdgeWarpMouse>false</screenEdgeWarpMouse>
+
+        <context name="Frame">
             <mousebind button="A-Left" action="Press">
-              <action name="Focus"/>
-              <action name="Raise"/>
-            </mousebind>
-            <mousebind button="A-Left" action="Click">
-              <action name="Unshade"/>
-            </mousebind>
-            <mousebind button="A-Left" action="Drag">
-              <action name="Move"/>
-            </action>
-          </mousebind>
-          <mousebind button="A-Right" action="Press">
             <action name="Focus"/>
             <action name="Raise"/>
+            </mousebind>
+
+            <mousebind button="A-Left" action="Click">
             <action name="Unshade"/>
-          </mousebind>
-          <mousebind button="A-Right" action="Drag">
-            <action name="Resize"/>
-          </mousebind>
+            </mousebind>
+
+            <mousebind button="A-Left" action="Drag">
+            <action name="Move"/>
+            </mousebind>
         </context>
+
         <context name="Desktop">
-          <mousebind button="Right" action="Press">
+            <mousebind button="Right" action="Press">
             <action name="ShowMenu">
-              <menu>root-menu</menu>
+                <menu>root-menu</menu>
             </action>
-          </mousebind>
+            </mousebind>
         </context>
-      </mouse>
+        </mouse>
 
       <menu>
         <file>/etc/xdg/openbox/menu.xml</file>
