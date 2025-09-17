@@ -1,11 +1,11 @@
-{ config, pkgs, ... }: { config = { # Openbox menu configuration
-environment.etc."xdg/openbox/menu.xml".text = ''
+{ config, pkgs, ... }: { config = { # Openbox menu configuration (copied from
+complete-config) environment.etc."xdg/openbox/menu.xml".text = ''
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_menu
   xmlns="http://openbox.org/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://openbox.org/
-              file:///usr/share/openbox/menu.xsd"
+                    file:///usr/share/openbox/menu.xsd"
 >
   <menu id="root-menu" label="Menu">
     <!-- Your 3 kiosk applications -->
@@ -84,10 +84,10 @@ environment.etc."xdg/openbox/menu.xml".text = ''
   xmlns="http://openbox.org/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://openbox.org/
-                file:///usr/share/openbox/rc.xsd"
+                      file:///usr/share/openbox/rc.xsd"
 >
   <theme>
-    <name>Onyx</name>
+    <name>Clearlooks</name>
     <titleLayout>NLIMC</titleLayout>
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
@@ -138,16 +138,154 @@ environment.etc."xdg/openbox/menu.xml".text = ''
     <popupTime>0</popupTime>
   </desktops>
 
+  <applications>
+    <!-- Firefox in kiosk mode should be full-screen -->
+    <application class="firefox" role="browser">
+      <decor>no</decor>
+      <shade>no</shade>
+      <focus>yes</focus>
+      <desktop>1</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>yes</fullscreen>
+      <maximized>true</maximized>
+    </application>
+
+    <!-- SAP application specific rule -->
+    <application
+      class="Chromium-browser"
+      name="sapapp-p1.postur.is__sab_bc_gui_sap_its_webui"
+    >
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>no</maximized>
+    </application>
+
+    <!-- Chromium/Chromium apps should have window decorations -->
+    <application class="chromium" type="normal">
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>false</maximized>
+    </application>
+
+    <!-- Chromium browser windows -->
+    <application class="chromium-browser" type="normal">
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>false</maximized>
+    </application>
+
+    <!-- Google Chrome apps should have window decorations -->
+    <application class="google-chrome" type="normal">
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>false</maximized>
+    </application>
+
+    <!-- Chrome browser windows -->
+    <application class="google-chrome-stable" type="normal">
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>false</maximized>
+    </application>
+
+    <!-- Any window with chromium or chrome in the class -->
+    <application class="*chromium*" type="normal">
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>false</maximized>
+    </application>
+
+    <application class="*chrome*" type="normal">
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>false</maximized>
+    </application>
+
+    <!-- Konsole terminal windows -->
+    <application class="konsole" type="normal">
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>false</maximized>
+    </application>
+
+    <!-- Other applications should be windowed for Tint2 access -->
+    <application class="*">
+      <decor>yes</decor>
+      <shade>yes</shade>
+      <focus>yes</focus>
+      <desktop>0</desktop>
+      <layer>normal</layer>
+      <iconic>no</iconic>
+      <skip_pager>no</skip_pager>
+      <skip_taskbar>no</skip_taskbar>
+      <fullscreen>no</fullscreen>
+      <maximized>false</maximized>
+    </application>
+  </applications>
+
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
     <keybind key="A-F4">
       <action name="Close" />
-    </keybind>
-    <keybind key="A-F10">
-      <action name="Maximize" />
-    </keybind>
-    <keybind key="A-F9">
-      <action name="Iconify" />
     </keybind>
     <keybind key="A-Escape">
       <action name="Lower" />
@@ -179,15 +317,6 @@ environment.etc."xdg/openbox/menu.xml".text = ''
 
       <mousebind button="A-Left" action="Drag">
         <action name="Move" />
-      </mousebind>
-
-      <mousebind button="A-Right" action="Press">
-        <action name="Focus" />
-        <action name="Raise" />
-      </mousebind>
-
-      <mousebind button="A-Right" action="Drag">
-        <action name="Resize" />
       </mousebind>
     </context>
 
