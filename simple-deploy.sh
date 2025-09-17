@@ -105,7 +105,7 @@ fi
 
 # Validate disk exists
 if [ ! -b "$DISK" ]; then
-  echo "❌ Error: $DISK is not a valid block device."
+  echo "Error: $DISK is not a valid block device."
   exit 1
 fi
 
