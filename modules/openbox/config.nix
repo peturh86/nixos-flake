@@ -4,7 +4,7 @@
   config = {
     # Openbox menu configuration (copied from complete-config)
     environment.etc."xdg/openbox/menu.xml".text = ''
-      <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
       <openbox_menu xmlns="http://openbox.org/"
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://openbox.org/
