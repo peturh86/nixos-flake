@@ -2,7 +2,6 @@
 {
   # Ensure terminal is available for debugging
   environment.systemPackages = with pkgs; [
-    kdePackages.konsole  # Primary terminal (Qt 6 version)
     xterm               # Fallback terminal
   ];
 
