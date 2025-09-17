@@ -21,7 +21,7 @@ in {
 
     keyMap = mkOption {
       type = types.str;
-      default = "is";
+      default = "us";
       description = "Console keymap";
     };
 
