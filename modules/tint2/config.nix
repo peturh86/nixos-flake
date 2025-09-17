@@ -34,7 +34,7 @@ in {
       panel_border_width = 0
       panel_margin = 0 0
       panel_padding = 2 0 2
-      panel_dock = 0
+      panel_dock = 1
       wm_menu = 0
       panel_layer = top
       panel_monitor = all
