@@ -152,6 +152,12 @@
           <keybind key="A-F4">
             <action name="Close"/>
           </keybind>
+          <keybind key="A-F10">
+            <action name="Maximize"/>
+          </keybind>
+          <keybind key="A-F9">
+            <action name="Iconify"/>
+          </keybind>
           <keybind key="A-Escape">
             <action name="Lower"/>
             <action name="FocusToBottom"/>
@@ -182,6 +188,15 @@
 
             <mousebind button="A-Left" action="Drag">
               <action name="Move"/>
+            </mousebind>
+
+            <mousebind button="A-Right" action="Press">
+              <action name="Focus"/>
+              <action name="Raise"/>
+            </mousebind>
+
+            <mousebind button="A-Right" action="Drag">
+              <action name="Resize"/>
             </mousebind>
           </context>
 
