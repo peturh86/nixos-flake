@@ -6,6 +6,7 @@ with types;
 let
   cfg = config.services.kiosk;
 in {
+  imports = (config.imports or []) ++ [ ./openbox/menu.nix ./openbox/rc.nix ];
   options.services.kiosk = {
     enableLightDM = mkOption {
       type = types.bool;
@@ -42,7 +43,7 @@ in {
   imports = (config.imports or []) ++ [ ./openbox/menu.nix ./openbox/rc.nix ];
 
   # Openbox configuration (only when not using the complete-config import)
-  environment.etc."xdg/openbox/rc.xml".text = mkIf (mkNot cfg.useCompleteConfig) ''
+  environment.etc."xdg/openbox/rc.xml".text = mkIf (! cfg.useCompleteConfig) ''
       <?xml version="1.0" encoding="UTF-8"?>
       <openbox_config xmlns="http://openbox.org/"
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
