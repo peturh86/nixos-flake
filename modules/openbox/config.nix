@@ -132,132 +132,7 @@
         </desktops>
 
         <applications>
-          <!-- Firefox in kiosk mode should be full-screen -->
-          <application class="firefox" role="browser">
-            <decor>no</decor>
-            <shade>no</shade>
-            <focus>yes</focus>
-            <desktop>1</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>yes</fullscreen>
-            <maximized>true</maximized>
-          </application>
-
-          <!-- SAP application specific rule -->
-          <application class="Chromium-browser" name="sapapp-p1.postur.is__sab_bc_gui_sap_its_webui">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>no</maximized>
-          </application>
-
-          <!-- Chromium/Chromium apps should have window decorations -->
-          <application class="chromium" type="normal">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
-          </application>
-
-          <!-- Chromium browser windows -->
-          <application class="chromium-browser" type="normal">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
-          </application>
-
-          <!-- Google Chrome apps should have window decorations -->
-          <application class="google-chrome" type="normal">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
-          </application>
-
-          <!-- Chrome browser windows -->
-          <application class="google-chrome-stable" type="normal">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
-          </application>
-
-          <!-- Any window with chromium or chrome in the class -->
-          <application class="*chromium*" type="normal">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
-          </application>
-
-          <application class="*chrome*" type="normal">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
-          </application>
-
-          <!-- Konsole terminal windows -->
-          <application class="konsole" type="normal">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
-          </application>
-
-          <!-- Other applications should be windowed for Tint2 access -->
+          <!-- All applications get normal window management -->
           <application class="*">
             <decor>yes</decor>
             <shade>yes</shade>
@@ -268,7 +143,7 @@
             <skip_pager>no</skip_pager>
             <skip_taskbar>no</skip_taskbar>
             <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
+            <maximized>no</maximized>
           </application>
         </applications>
 
