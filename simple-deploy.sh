@@ -8,18 +8,31 @@ chmod +x ./scripts/*.sh
 
 # === Configuration Variables ===
 DISK="${DISK:-}"
-HOSTNAME="${HOSTNAME:-}"
+HOSTNAME="${HOSTNAME:-kiosk-001}"
 SWAP_SIZE="${SWAP_SIZE:-8GB}"
 BOOT_SIZE="${BOOT_SIZE:-512MB}"
-KIOSK_USER="${KIOSK_USER:-}"
+KIOSK_USER="${KIOSK_USER:-kiosk}"
 KIOSK_PASSWORD="${KIOSK_PASSWORD:-}"
 TIMEZONE="${TIMEZONE:-UTC}"
 LOCALE="${LOCALE:-en_US.UTF-8}"
 KIOSK_URL="${KIOSK_URL:-https://factory-app.local}"
-WIFI_ENABLE="${WIFI_ENABLE:-}"
+WIFI_ENABLE="${WIFI_ENABLE:-false}"
 WIFI_SSID="${WIFI_SSID:-}"
 WIFI_PASSWORD="${WIFI_PASSWORD:-}"
 WIFI_HIDDEN="${WIFI_HIDDEN:-false}"
+
+# === Interactive Hostname Configuration ===
+echo "=== NixOS Kiosk Configuration ==="
+
+# Only prompt for hostname if not set via environment variable
+if [ -z "$HOSTNAME" ] || [ "$HOSTNAME" = "kiosk-001" ]; then
+  read -rp "Enter hostname [kiosk-001]: " HOSTNAME_INPUT
+  HOSTNAME="${HOSTNAME_INPUT:-kiosk-001}"
+fi
+
+echo "Using hostname: $HOSTNAME"
+echo "Using default settings for other configuration options."
+echo
 
 # === Interactive Configuration ===
 echo "=== NixOS Kiosk Configuration ==="
@@ -34,28 +47,6 @@ fi
 if [ -z "$KIOSK_USER" ]; then
   read -rp "Enter kiosk username [kiosk]: " KIOSK_USER
   KIOSK_USER="${KIOSK_USER:-kiosk}"
-fi
-
-# Kiosk Password
-if [ -z "$KIOSK_PASSWORD" ]; then
-  read -rsp "Enter kiosk user password: " KIOSK_PASSWORD
-  echo
-  if [ -z "$KIOSK_PASSWORD" ]; then
-    echo "Password cannot be empty"
-    exit 1
-  fi
-fi
-
-# Timezone
-if [ "$TIMEZONE" = "UTC" ]; then
-  read -rp "Enter timezone [UTC]: " TIMEZONE_INPUT
-  TIMEZONE="${TIMEZONE_INPUT:-UTC}"
-fi
-
-# Kiosk URL
-if [ "$KIOSK_URL" = "https://factory-app.local" ]; then
-  read -rp "Enter kiosk URL [https://factory-app.local]: " KIOSK_URL_INPUT
-  KIOSK_URL="${KIOSK_URL_INPUT:-https://factory-app.local}"
 fi
 
 # WiFi Configuration
@@ -126,17 +117,6 @@ else
   echo "WiFi: Disabled"
 fi
 echo
-
-read -rp "Continue with these settings? (y/n): " CONFIRM
-case "${CONFIRM:-y}" in
-  [Nn]|[Nn][Oo])
-    echo "Deployment cancelled."
-    exit 0
-    ;;
-  *)
-    echo "Starting deployment..."
-    ;;
-esac
 
 # === Execute Deployment Steps ===
 

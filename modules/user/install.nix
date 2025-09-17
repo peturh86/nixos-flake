@@ -10,7 +10,7 @@ in {
     users.users."${cfg.user}" = {
       isNormalUser = true;
       description = "Kiosk user";
-      initialPassword = cfg.password;
+      initialPassword = lib.mkIf (cfg.password != "") cfg.password;
       extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
 
       packages = with pkgs; [
