@@ -1,11 +1,11 @@
-{ config, pkgs, ... }: { config = { # Openbox menu configuration
+{ config, pkgs, ... }: { # Openbox menu configuration
 environment.etc."xdg/openbox/menu.xml".text = ''
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_menu
   xmlns="http://openbox.org/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://openbox.org/
-              file:///usr/share/openbox/menu.xsd"
+                  file:///usr/share/openbox/menu.xsd"
 >
   <menu id="root-menu" label="Menu">
     <!-- Your 3 kiosk applications -->
@@ -84,7 +84,7 @@ environment.etc."xdg/openbox/menu.xml".text = ''
   xmlns="http://openbox.org/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://openbox.org/
-                file:///usr/share/openbox/rc.xsd"
+                    file:///usr/share/openbox/rc.xsd"
 >
   <!-- Windows-like theme with titlebar buttons -->
   <theme>
@@ -188,4 +188,4 @@ environment.etc."xdg/openbox/menu.xml".text = ''
     <manageDesktops>no</manageDesktops>
   </menu>
 </openbox_config>
-''; }; }
+''; }
