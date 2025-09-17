@@ -179,65 +179,65 @@
         </keyboard>
 
         <mouse>
-        <dragThreshold>1</dragThreshold>
-        <doubleClickTime>200</doubleClickTime>
-        <screenEdgeWarpTime>400</screenEdgeWarpTime>
-        <screenEdgeWarpMouse>false</screenEdgeWarpMouse>
+          <dragThreshold>1</dragThreshold>
+          <doubleClickTime>200</doubleClickTime>
+          <screenEdgeWarpTime>400</screenEdgeWarpTime>
+          <screenEdgeWarpMouse>false</screenEdgeWarpMouse>
 
-        <context name="Frame">
+          <context name="Frame">
             <mousebind button="A-Left" action="Press">
-            <action name="Focus"/>
-            <action name="Raise"/>
+              <action name="Focus"/>
+              <action name="Raise"/>
             </mousebind>
 
             <mousebind button="A-Left" action="Click">
-            <action name="Unshade"/>
+              <action name="Unshade"/>
             </mousebind>
 
             <mousebind button="A-Left" action="Drag">
-            <action name="Move"/>
+              <action name="Move"/>
             </mousebind>
-        </context>
+          </context>
 
-        <context name="Desktop">
+          <context name="Desktop">
             <mousebind button="Right" action="Press">
-            <action name="ShowMenu">
+              <action name="ShowMenu">
                 <menu>root-menu</menu>
-            </action>
+              </action>
             </mousebind>
-        </context>
+          </context>
         </mouse>
 
-      <menu>
-        <file>/etc/xdg/openbox/menu.xml</file>
-        <hideDelay>200</hideDelay>
-        <middle>no</middle>
-        <submenuShowDelay>100</submenuShowDelay>
-        <submenuHideDelay>400</submenuHideDelay>
-        <applicationIcons>yes</applicationIcons>
-        <manageDesktops>no</manageDesktops>
-      </menu>
+        <menu>
+          <file>/etc/xdg/openbox/menu.xml</file>
+          <hideDelay>200</hideDelay>
+          <middle>no</middle>
+          <submenuShowDelay>100</submenuShowDelay>
+          <submenuHideDelay>400</submenuHideDelay>
+          <applicationIcons>yes</applicationIcons>
+          <manageDesktops>no</manageDesktops>
+        </menu>
 
-      <margins>
-        <top>0</top>
-        <bottom>0</bottom>
-        <left>0</left>
-        <right>0</right>
-      </margins>
+        <margins>
+          <top>0</top>
+          <bottom>0</bottom>
+          <left>0</left>
+          <right>0</right>
+        </margins>
 
-      <dock>
-        <position>Bottom</position>
-        <floatingX>0</floatingX>
-        <floatingY>0</floatingY>
-        <noStrut>no</noStrut>
-        <stacking>Above</stacking>
-        <direction>Horizontal</direction>
-        <autoHide>no</autoHide>
-        <hideDelay>300</hideDelay>
-        <showDelay>300</showDelay>
-        <moveButton>Middle</moveButton>
-      </dock>
-    </openbox_config>
+        <dock>
+          <position>Bottom</position>
+          <floatingX>0</floatingX>
+          <floatingY>0</floatingY>
+          <noStrut>no</noStrut>
+          <stacking>Above</stacking>
+          <direction>Horizontal</direction>
+          <autoHide>no</autoHide>
+          <hideDelay>300</hideDelay>
+          <showDelay>300</showDelay>
+          <moveButton>Middle</moveButton>
+        </dock>
+      </openbox_config>
     '';
   };
 }
