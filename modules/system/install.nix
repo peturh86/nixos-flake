@@ -92,7 +92,7 @@ in {
         wireless.enable = mkDefault false;
       }
       (mkIf cfg.wifi.enable {
-        networkmanager.wifi.enable = true;
+        wireless.enable = true;
         wireless.networks."${cfg.wifi.ssid}" = {
           psk = cfg.wifi.password;
           hidden = cfg.wifi.hidden;
