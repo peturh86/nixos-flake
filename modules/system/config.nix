@@ -16,10 +16,5 @@ in {
 
     # Disable xterm desktop manager
     services.xserver.desktopManager.xterm.enable = mkDefault false;
-
-    # Firefox kiosk autostart
-    services.xserver.displayManager.sessionCommands = ''
-      ${pkgs.firefox}/bin/firefox --kiosk ${cfg.kioskUrl} &
-    '';
   };
 }
