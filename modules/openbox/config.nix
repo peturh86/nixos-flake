@@ -103,68 +103,6 @@
         <keybind key="A-F9"><action name="Iconify" /></keybind>
       </keyboard>
 
-      <!-- Mouse bindings -->
-      <mouse>
-        <dragThreshold>1</dragThreshold>
-        <doubleClickTime>200</doubleClickTime>
-
-        <!-- Window frame -->
-        <context name="Frame">
-          <mousebind button="A-Left" action="Press">
-            <action name="Focus" />
-            <action name="Raise" />
-          </mousebind>
-          <mousebind button="A-Left" action="Drag">
-            <action name="Move" />
-          </mousebind>
-          <mousebind button="A-Right" action="Drag">
-            <action name="Resize" />
-          </mousebind>
-        </context>
-
-        <!-- Titlebar (normal Windows behavior) -->
-        <context name="Titlebar">
-          <mousebind button="Left" action="Click">
-            <action name="Focus" />
-            <action name="Raise" />
-            <action name="Activate" />
-          </mousebind>
-          <mousebind button="Left" action="Drag">
-            <action name="Move" />
-          </mousebind>
-          <mousebind button="DoubleClick">
-            <action name="ToggleMaximizeFull" />
-          </mousebind>
-        </context>
-
-        <context name="Titlebar Close">
-          <mousebind button="Left" action="Click">
-            <action name="Close" />
-          </mousebind>
-        </context>
-
-        <context name="Titlebar Maximize">
-          <mousebind button="Left" action="Click">
-            <action name="ToggleMaximizeFull" />
-          </mousebind>
-        </context>
-
-        <context name="Titlebar Iconify">
-          <mousebind button="Left" action="Click">
-            <action name="Iconify" />
-          </mousebind>
-        </context>
-
-        <!-- Desktop right-click menu -->
-        <context name="Desktop">
-          <mousebind button="Right" action="Press">
-            <action name="ShowMenu">
-              <menu>root-menu</menu>
-            </action>
-          </mousebind>
-        </context>
-      </mouse>
-
       <!-- Attach the custom menu -->
       <menu>
         <file>/etc/xdg/openbox/menu.xml</file>
