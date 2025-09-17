@@ -1,48 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
-with types;
 
 let
   cfg = config.services.kiosk;
 in {
-  options.services.kiosk = {
-    enableLightDM = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable LightDM display manager";
-    };
-
-    enableTint2 = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable Tint2 panel";
-    };
-  };
-
   config = {
-    # Enable browsers
-    programs.firefox.enable = mkDefault true;
-    programs.chromium.enable = mkDefault true;
-
-    # Enable Git
-    programs.git.enable = mkDefault true;
-
-    # X11 and Display Manager
-    services.xserver.enable = mkDefault true;
-    services.xserver.displayManager.lightdm.enable = mkDefault cfg.enableLightDM;
-    services.xserver.displayManager.autoLogin.enable = mkDefault cfg.autologin;
-    services.xserver.displayManager.autoLogin.user = mkIf cfg.autologin cfg.user;
-    services.xserver.displayManager.defaultSession = mkDefault "none+openbox";
-
-    # Window manager and desktop
-    services.xserver.desktopManager.xterm.enable = mkDefault false;
-    services.xserver.windowManager.openbox.enable = mkDefault true;
-
-  imports = (config.imports or []) ++ [ ./openbox/menu.nix ./openbox/rc.nix ];
-
-  # Openbox configuration (only when not using the complete-config import)
-  environment.etc."xdg/openbox/rc.xml".text = mkIf (mkNot cfg.useCompleteConfig) ''
+    environment.etc."xdg/openbox/rc.xml".text = mkIf (! cfg.useCompleteConfig) ''
       <?xml version="1.0" encoding="UTF-8"?>
       <openbox_config xmlns="http://openbox.org/"
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
