@@ -131,22 +131,6 @@
           <popupTime>0</popupTime>
         </desktops>
 
-        <applications>
-          <!-- All applications get normal window management -->
-          <application class="*">
-            <decor>yes</decor>
-            <shade>yes</shade>
-            <focus>yes</focus>
-            <desktop>0</desktop>
-            <layer>normal</layer>
-            <iconic>no</iconic>
-            <skip_pager>no</skip_pager>
-            <skip_taskbar>no</skip_taskbar>
-            <fullscreen>no</fullscreen>
-            <maximized>no</maximized>
-          </application>
-        </applications>
-
         <keyboard>
           <chainQuitKey>C-g</chainQuitKey>
           <keybind key="A-F4">
