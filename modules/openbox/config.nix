@@ -103,6 +103,21 @@
         <keybind key="A-F9"><action name="Iconify" /></keybind>
       </keyboard>
 
+      <!-- Mouse bindings -->
+      <mouse>
+        <dragThreshold>1</dragThreshold>
+        <doubleClickTime>200</doubleClickTime>
+
+        <!-- Desktop right-click menu -->
+        <context name="Desktop">
+          <mousebind button="Right" action="Press">
+            <action name="ShowMenu">
+              <menu>root-menu</menu>
+            </action>
+          </mousebind>
+        </context>
+      </mouse>
+
       <!-- Attach the custom menu -->
       <menu>
         <file>/etc/xdg/openbox/menu.xml</file>
