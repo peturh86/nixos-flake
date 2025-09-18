@@ -8,7 +8,7 @@
     </item>
     <item label="SAP">
       <action name="Execute">
-        <command>chromium --app=https://sap.example</command>
+        <command>chromium --app=https://sapapp-p1.postur.is/sap/bc/gui/sap/its/webgui</command>
       </action>
     </item>
   </menu>
